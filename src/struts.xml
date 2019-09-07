@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+		"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" 
+		"http://struts.apache.org/dtds/struts-2.3.dtd" >
+<struts >
+	
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<!-- 资源后缀，action 或者不填 ,, 不可省略，可以添加其他 -->
+	<constant name="struts.action.extension" value="action,,"></constant>
+	<!-- 动态方法调用开启，结合a_struts.xml 中 action name使用  -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"></constant>
+	<!-- 开发模式，热加载，只对一些默认配置文件有用，无需重启服务器，修改类等内容时仍需重启服务器 -->
+	<constant name="struts.devMode" value="true"></constant>
+
+	<constant name="struts.objectFactory" value="spring"></constant>
+
+	<package name="user" namespace="/" extends="struts-default">
+		
+		<global-exception-mappings>
+			<exception-mapping result="wrong" exception="com.crm.utils.LoginException"></exception-mapping>
+		</global-exception-mappings>
+		<action name="UserAction_*" class="userAction" method="{1}">
+			<result name="login" type="redirect">/index.jsp</result>
+			<result name="wrong" >/login.jsp</result>
+		</action>
+	</package>
+	
+	<package name="customer" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="permission" class="com.crm.web.MyInterceptor">
+				<param name="excludeMethods">login</param>
+			</interceptor>
+			<!-- 配置拦截器栈 -->
+			<interceptor-stack name="myStack">
+				<!-- 配置需要引用的拦截器,最好将自己的拦截器放在默认的前面 -->
+				<interceptor-ref name="permission"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		<global-results>
+			<result name="toLogin" type="redirect">/login.jsp</result>
+		</global-results>
+		<action name="CustomerAction_*" class="customerAction" method="{1}">
+			<result name="toList" type="redirectAction">CustomerAction_list</result>
+			<result name="list" type="">/jsp/customer/list.jsp</result>
+			<result name="delete" type="redirectAction">CustomerAction_list</result>
+			<result name="modify" type="">/jsp/customer/edit.jsp</result>
+			<result name="update" type="redirectAction">CustomerAction_list</result>
+		</action>
+	</package>
+	
+	<package name="linkman" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="permission" class="com.crm.web.MyInterceptor">
+				<param name="excludeMethods">login</param>
+			</interceptor>
+			<!-- 配置拦截器栈 -->
+			<interceptor-stack name="myStack">
+				<!-- 配置需要引用的拦截器,最好将自己的拦截器放在默认的前面 -->
+				<interceptor-ref name="permission"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		<global-results>
+			<result name="toLogin" type="redirect">/login.jsp</result>
+		</global-results>
+		<action name="LinkmanAction_*" class="linkmanAction" method="{1}">
+			<result name="toList" type="redirectAction">LinkmanAction_list</result>
+			<result name="list" type="">/jsp/linkman/list.jsp</result>
+			<result name="delete" type="redirectAction">LinkmanAction_list</result>
+			<result name="modify" type="">/jsp/linkman/edit.jsp</result>
+			<result name="update" type="redirectAction">LinkmanAction_list</result>
+		</action>
+	</package>
+	
+
+
+</struts>
