@@ -45,6 +45,7 @@
 	</bean>
 	<bean name="linkmanAction" class="com.crm.web.action.LinkmanAction" scope="prototype">
 		<property name="linkmanService" ref="linkmanService"></property>
+<!-- 		<property name="cust_id" value="cust_id"></property> -->
 	</bean>
 
 	<!-- 管理 Service -->

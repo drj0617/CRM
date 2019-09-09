@@ -19,8 +19,9 @@ public class LinkmanAction extends ActionSupport implements ModelDriven<LinkMan>
 	private LinkMan linkman = new LinkMan();
 	
 	private Long cust_id;
+	private Long lkm_cust_id;
 	
-	
+
 
 	public String add() {
 		
@@ -88,6 +89,15 @@ public class LinkmanAction extends ActionSupport implements ModelDriven<LinkMan>
 	public void setCust_id(Long cust_id) {
 		this.cust_id = cust_id;
 	}
+	
+	public Long getLkm_cust_id() {
+		return lkm_cust_id;
+	}
+	
+	public void setLkm_cust_id(Long lkm_cust_id) {
+		this.lkm_cust_id = lkm_cust_id;
+	}
+	
 	@Override
 	public LinkMan getModel() {
 		return linkman;

@@ -60,24 +60,24 @@
 							<TR>
 								<td>联系人名称：</td>
 								<td><INPUT class=textbox id=sChannel2 style="WIDTH: 180px"
-									maxLength=50 name="lkm_name" value="${linkman.lkm_name}">
+									maxLength=50 name="lkm_name" value="${param.linkman.lkm_name}">
 								</td>
 								<td>联系人性别：</td>
 								<td><input type="radio" value="1" name="lkm_gender"
-									<c:if test="${linkman.lkm_gender=='1' }">checked</c:if>>男
+									<c:if test="${param.linkman.lkm_gender=='1' }">checked</c:if>>男
 
 									<input type="radio" value="2" name="lkm_gender"
-									<c:if test="${linkman.lkm_gender=='2' }">checked</c:if>>女
+									<c:if test="${param.linkman.lkm_gender=='2' }">checked</c:if>>女
 								</td>
 							</TR>
 							<TR>
 								<td>联系人办公电话 ：</td>
 								<td><INPUT class=textbox id=sChannel2 style="WIDTH: 180px"
-									maxLength=50 name="lkm_phone" value="${linkman.lkm_phone}">
+									maxLength=50 name="lkm_phone" value="${param.linkman.lkm_phone}">
 								</td>
 								<td>联系人手机 ：</td>
 								<td><INPUT class=textbox id=sChannel2 style="WIDTH: 180px"
-									maxLength=50 name="lkm_mobile" value="${linkman.lkm_mobile}">
+									maxLength=50 name="lkm_mobile" value="${param.linkman.lkm_mobile}">
 								</td>
 							</TR>
 							<tr>

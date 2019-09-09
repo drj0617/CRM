@@ -11,8 +11,17 @@ public class LinkMan {
 	private String lkm_qq;
 	private String lkm_position;
 	private String lkm_memo;
-	
+	private Long lkm_cust_id;
 	private Customer customer;
+	
+	public Long getLkm_cust_id() {
+		return lkm_cust_id;
+	}
+
+	public void setLkm_cust_id(Long lkm_cust_id) {
+		this.lkm_cust_id = lkm_cust_id;
+	}
+
 
 	public LinkMan() {
 		super();

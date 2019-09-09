@@ -106,9 +106,9 @@
 														<TD>${linkman.lkm_mobile }</TD>
 
 														<TD><a
-															href="${pageContext.request.contextPath }/LinkmanAction_modify?lkm_id=${linkman.lkm_id}">修改</a>
+															href="${pageContext.request.contextPath }/LinkmanAction_modify?lkm_id=${linkman.lkm_id}&?cust_id=${linkman.customer.cust_id}">修改</a>
 															&nbsp;&nbsp; <a
-															href="${pageContext.request.contextPath }/LinkmanAction_delete?lkm_id=${linkman.lkm_id}">删除</a>
+															href="${pageContext.request.contextPath }/LinkmanAction_delete?lkm_id=${linkman.lkm_id}&?cust_id=${linkman.customer.cust_id}">删除</a>
 														</TD>
 													</TR>
 
