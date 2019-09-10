@@ -13,9 +13,9 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/jquery-1.11.0.min.js"></script>
 <SCRIPT language=javascript>
-	function to_page(page) {
-		if (page) {
-			$("#page").val(page);
+	function to_page(currentPage) {
+		if (currentPage) {
+			$("#currentPage").val(currentPage);
 		}
 		document.customerForm.submit();
 
@@ -84,11 +84,17 @@
 								<TR>
 									<TD>
 										<TABLE id=grid
-											style="BORDER-TOP-WIDTH: 0px; FONT-WEIGHT: normal; BORDER-LEFT-WIDTH: 0px; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 0px; BORDER-BOTTOM-COLOR: #cccccc; WIDTH: 100%; BORDER-TOP-COLOR: #cccccc; FONT-STYLE: normal; BACKGROUND-COLOR: #cccccc; BORDER-RIGHT-WIDTH: 0px; TEXT-DECORATION: none; BORDER-RIGHT-COLOR: #cccccc"
+											style="BORDER-TOP-WIDTH: 0px; FONT-WEIGHT: normal; 
+											BORDER-LEFT-WIDTH: 0px; BORDER-LEFT-COLOR: #cccccc; 
+											BORDER-BOTTOM-WIDTH: 0px; BORDER-BOTTOM-COLOR: #cccccc; 
+											WIDTH: 100%; BORDER-TOP-COLOR: #cccccc; FONT-STYLE: normal; 
+											BACKGROUND-COLOR: #cccccc; BORDER-RIGHT-WIDTH: 0px; 
+											TEXT-DECORATION: none; BORDER-RIGHT-COLOR: #cccccc"
 											cellSpacing=1 cellPadding=2 rules=all border=0>
 											<TBODY>
 												<TR
-													style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
+													style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; 
+													TEXT-DECORATION: none">
 													<TD>客户名称</TD>
 													<TD>客户级别</TD>
 													<TD>客户来源</TD>
@@ -97,9 +103,10 @@
 													<TD>手机</TD>
 													<TD>操作</TD>
 												</TR>
-												<c:forEach items="${list }" var="customer">
+												<c:forEach items="${pageBean.list }" var="customer">
 													<TR
-														style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
+														style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white;
+														 TEXT-DECORATION: none">
 														<TD>${customer.cust_name }</TD>
 														<TD>${customer.cust_level }</TD>
 														<TD>${customer.cust_source }</TD>
@@ -122,20 +129,19 @@
 
 								<TR>
 									<TD><SPAN id=pagelink>
-											<DIV
-												style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
-												共[<B>${total}</B>]条记录,[<B>${totalPage}</B>]页 ,每页显示 <select
+											<DIV style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
+												共[<B>${pageBean.totalCount}</B>]条记录,[<B>${pageBean.totalPage}</B>]页 ,每页显示 <select
 													name="pageSize">
 
-													<option value="15">1</option>
-												<option value="30" >30</option>
+													<option value="5">5</option>
+												<option value="10" >10</option>
 												</select>
 												条
-												[<A href="javascript:to_page(${page-1})">前一页</A>]
-												<B>${page}</B>
-												[<A href="javascript:to_page(${page+1})">后一页</A>] 
+												[<A href="javascript:to_page(${pageBean.currentPage - 1})">前一页</A>]
+												<B>${pageBean.currentPage}</B>
+												[<A href="javascript:to_page(${pageBean.currentPage + 1})">后一页</A>] 
 												到
-												<input type="text" size="3" id="page" name="page" />
+												<input type="text" size="3" id="currentPage" name="currentPage" />
 												页
 												
 												<input type="button" value="Go" onclick="to_page()"/>

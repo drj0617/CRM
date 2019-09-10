@@ -1,6 +1,5 @@
 package com.crm.web.action;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
@@ -8,7 +7,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.crm.beans.Customer;
 import com.crm.service.CustomerService;
-import com.crm.service.imp.CustomerServiceImp;
+import com.crm.utils.PageBean;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -19,7 +18,9 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	
 	private Customer customer = new Customer();
 	
-	
+	private int pageSize;
+	private int currentPage;
+
 
 	public String add() {
 		
@@ -36,9 +37,11 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		if(customer.getCust_name() != null) {
 			dc.add(Restrictions.like("cust_name", "%"+customer.getCust_name()+"%"));
 		}
-		List<Customer> list = customerService.getAllCustomer(dc);
+//		List<Customer> list = customerService.getAllCustomer(dc);
 		
-		ActionContext.getContext().put("list", list);
+		PageBean<Customer> pageBean = customerService.finAllCustomerByPageBean(dc,pageSize,currentPage);
+		
+		ActionContext.getContext().put("pageBean", pageBean);
 		
 		return "list";
 	}
@@ -82,7 +85,24 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		this.customer = customer;
 	}
 
+
 	
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
 	@Override
 	public Customer getModel() {
 		return customer;

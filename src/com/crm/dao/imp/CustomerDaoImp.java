@@ -6,12 +6,14 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.crm.beans.Customer;
 import com.crm.dao.CustomerDao;
 
+@SuppressWarnings("all")
 public class CustomerDaoImp extends HibernateDaoSupport implements CustomerDao {
 
 	@Override
@@ -23,7 +25,7 @@ public class CustomerDaoImp extends HibernateDaoSupport implements CustomerDao {
 
 	@Override
 	public void deleteCustomer(Customer customer) {
-		System.out.println(customer);
+//		System.out.println(customer);
 		getHibernateTemplate().delete(customer);
 		
 	}
@@ -83,6 +85,27 @@ public class CustomerDaoImp extends HibernateDaoSupport implements CustomerDao {
 		
 		getHibernateTemplate().delete(customer);
 		
+	}
+
+	@Override
+	public int findTatalCount(DetachedCriteria dc) {
+
+		dc.setProjection(Projections.count("cust_id"));
+		
+		List<Long> list = (List<Long>) getHibernateTemplate().findByCriteria(dc);
+		
+		dc.setProjection(null);
+		
+		return (int)(long)list.get(0);
+	}
+
+	@Override
+	public List<Customer> finAllCustomerByPageBean(DetachedCriteria dc, int pageSize, int currentPage) {
+
+		int firstResult = (currentPage -1) * pageSize;
+		List<Customer> list = (List<Customer>) getHibernateTemplate().findByCriteria(dc,  firstResult , pageSize);
+		
+		return list;
 	}
 
 	

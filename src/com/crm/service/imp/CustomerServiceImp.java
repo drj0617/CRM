@@ -11,6 +11,7 @@ import com.crm.beans.Customer;
 import com.crm.dao.CustomerDao;
 import com.crm.dao.imp.CustomerDaoImp;
 import com.crm.service.CustomerService;
+import com.crm.utils.PageBean;
 
 public class CustomerServiceImp implements CustomerService {
 
@@ -53,6 +54,7 @@ public class CustomerServiceImp implements CustomerService {
 		customerDao.removeCustomer(id);
 	}
 
+
 	@Override
 	public void deleteCustomer(Customer customer) {
 		customerDao.deleteCustomer(customer);
@@ -65,6 +67,21 @@ public class CustomerServiceImp implements CustomerService {
 	public void setCustomerDao(CustomerDao customerDao) {
 		this.customerDao = customerDao;
 	}
+
+	@Override
+	public PageBean<Customer> finAllCustomerByPageBean(DetachedCriteria dc, int pageSize, int currentPage) {
+		// 1.查询页数
+		int totalCount = customerDao.findTatalCount(dc);
+		// 2.查询全部
+		PageBean<Customer> pageBean = new PageBean<Customer>(currentPage, pageSize,totalCount);
+		List<Customer> list = customerDao.finAllCustomerByPageBean(dc,pageBean.getPageSize(),pageBean.getCurrentPage());
+		
+		pageBean.setList(list);
+		
+		return pageBean;
+	}
+
+
 
 	
 	

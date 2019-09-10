@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 
 import com.crm.beans.Customer;
+import com.crm.utils.PageBean;
 
 public interface CustomerService {
 
@@ -15,5 +16,6 @@ public interface CustomerService {
 	void modifyCustomer(Customer c);
 	void deleteCustomer(Customer customer);
 	void removeCustomerById(Long id);
+	PageBean<Customer> finAllCustomerByPageBean(DetachedCriteria dc, int pageSize, int currentPage);
 
 }

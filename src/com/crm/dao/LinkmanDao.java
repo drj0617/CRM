@@ -15,6 +15,8 @@ public interface LinkmanDao {
 	LinkMan findLinkmanById(Long id);
 
 	List<LinkMan> findLinkMan(DetachedCriteria dc);
+	int findTotalCount(DetachedCriteria dc);
+	List<LinkMan> findAllLinkmanByPageBean(DetachedCriteria dc, int currentPage, int pageSize);
 
 
 }

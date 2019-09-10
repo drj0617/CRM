@@ -1,14 +1,11 @@
 package com.crm.web.action;
 
-import java.util.List;
-
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.crm.beans.LinkMan;
 import com.crm.service.LinkmanService;
-import com.crm.service.imp.LinkmanServiceImp;
+import com.crm.utils.PageBean;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -20,7 +17,8 @@ public class LinkmanAction extends ActionSupport implements ModelDriven<LinkMan>
 	
 	private Long cust_id;
 	private Long lkm_cust_id;
-	
+	private int currentPage;
+	private int pageSize;
 
 
 	public String add() {
@@ -39,9 +37,9 @@ public class LinkmanAction extends ActionSupport implements ModelDriven<LinkMan>
 			dc.add(Restrictions.like("lkm_name","%"+linkman.getLkm_name()+"%"));
 		}
 		
-		List<LinkMan> list = linkmanService.findAllLinkMan(dc);
+		PageBean<LinkMan> pageBean = linkmanService.findAllLinkManByPageBean(dc,currentPage,pageSize);
 		
-		ActionContext.getContext().put("list", list);
+		ActionContext.getContext().put("pageBean", pageBean);
 		
 		return "list";
 	}
@@ -98,6 +96,23 @@ public class LinkmanAction extends ActionSupport implements ModelDriven<LinkMan>
 		this.lkm_cust_id = lkm_cust_id;
 	}
 	
+	
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
 	@Override
 	public LinkMan getModel() {
 		return linkman;

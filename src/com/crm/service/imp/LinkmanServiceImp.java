@@ -9,6 +9,7 @@ import com.crm.beans.LinkMan;
 import com.crm.dao.CustomerDao;
 import com.crm.dao.LinkmanDao;
 import com.crm.service.LinkmanService;
+import com.crm.utils.PageBean;
 
 public class LinkmanServiceImp implements LinkmanService {
 
@@ -85,6 +86,20 @@ public class LinkmanServiceImp implements LinkmanService {
 
 	public void setLinkmanDao(LinkmanDao linkmanDao) {
 		this.linkmanDao = linkmanDao;
+	}
+
+	@Override
+	public PageBean<LinkMan> findAllLinkManByPageBean(DetachedCriteria dc, int currentPage, int pageSize) {
+
+		int totalCount = linkmanDao.findTotalCount(dc);
+		
+		PageBean<LinkMan> pageBean = new PageBean<LinkMan>(currentPage,pageSize,totalCount);
+		
+		List<LinkMan> list = linkmanDao.findAllLinkmanByPageBean(dc,pageBean.getCurrentPage(),pageBean.getPageSize());
+		
+		pageBean.setList(list);
+		
+		return pageBean;
 	}
 
 

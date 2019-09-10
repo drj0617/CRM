@@ -13,9 +13,9 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/jquery-1.11.0.min.js"></script>
 <SCRIPT language=javascript>
-	function to_page(page) {
-		if (page) {
-			$("#page").val(page);
+	function to_page(currentPage) {
+		if (currentPage) {
+			$("#currentPage").val(currentPage);
 		}
 		document.customerForm.submit();
 
@@ -96,12 +96,12 @@
 													<TD>手机</TD>
 													<TD>操作</TD>
 												</TR>
-												<c:forEach items="${list }" var="linkman">
+												<c:forEach items="${pageBean.list }" var="linkman">
 													<TR
 														style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
 														<TD>${linkman.lkm_name }</TD>
 														<TD>${linkman.lkm_gender }</TD>
-														<TD>${linkman.customer.cust_id }</TD>
+														<TD>${linkman.customer.cust_name }</TD>
 														<TD>${linkman.lkm_phone }</TD>
 														<TD>${linkman.lkm_mobile }</TD>
 
@@ -121,20 +121,19 @@
 
 								<TR>
 									<TD><SPAN id=pagelink>
-											<DIV
-												style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
-												共[<B>${total}</B>]条记录,[<B>${totalPage}</B>]页 ,每页显示 <select
+											<DIV style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
+												共[<B>${pageBean.totalCount}</B>]条记录,[<B>${pageBean.totalPage}</B>]页 ,每页显示 <select
 													name="pageSize">
 
-													<option value="1">1</option>
-												<option value="30">30</option>
+													<option value="5">5</option>
+												<option value="10" >10</option>
 												</select>
 												条
-												[<A href="javascript:to_page(${page-1})">前一页</A>]
-												<B>${page}</B>
-												[<A href="javascript:to_page(${page+1})">后一页</A>] 
+												[<A href="javascript:to_page(${pageBean.currentPage - 1})">前一页</A>]
+												<B>${pageBean.currentPage}</B>
+												[<A href="javascript:to_page(${pageBean.currentPage + 1})">后一页</A>] 
 												到
-												<input type="text" size="3" id="page" name="page" />
+												<input type="text" size="3" id="currentPage" name="currentPage" />
 												页
 												
 												<input type="button" value="Go" onclick="to_page()"/>

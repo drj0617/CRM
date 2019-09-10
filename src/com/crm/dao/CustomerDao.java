@@ -19,6 +19,8 @@ public interface CustomerDao {
 	List<Customer> getAllCustomer();
 	List<Customer> getAllCustomer(DetachedCriteria dc);
 	void removeCustomer(Long id);
+	int findTatalCount(DetachedCriteria dc);
+	List<Customer> finAllCustomerByPageBean(DetachedCriteria dc, int pageSize, int currentPage);
 
 
 }
