@@ -22,7 +22,6 @@ public class LinkmanAction extends ActionSupport implements ModelDriven<LinkMan>
 
 
 	public String add() {
-		
 		linkmanService.add(cust_id,linkman);
 		
 		return "toList";

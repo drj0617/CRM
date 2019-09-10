@@ -19,33 +19,18 @@ public class LinkmanServiceImp implements LinkmanService {
 	@Override
 	public LinkMan findlikman(Long id) {
 
-		LinkMan linkMan = linkmanDao.findLinkmanById(id);
+		LinkMan linkMan = linkmanDao.findById(id);
 		
 		return linkMan;
-	}
-
-	@Override
-	public List<LinkMan> findAllLinkMan() {
-
-		
-		return null;
-	}
-
-	@Override
-	public List<LinkMan> findAllLinkMan(DetachedCriteria dc) {
-
-		List<LinkMan> list = linkmanDao.findLinkMan(dc);
-		
-		return list;
 	}
 
 	@Override
 	public void modifyLinkman(LinkMan linkman, Long old_lkm_id, Long cust_id) {
 		linkmanDao.modify(linkman);
 		
-		Customer customer = customerDao.findCustomerById(cust_id);
+		Customer customer = customerDao.findById(cust_id);
 		
-		LinkMan old_linkman = linkmanDao.findLinkmanById(old_lkm_id);
+		LinkMan old_linkman = linkmanDao.findById(old_lkm_id);
 		
 		customer.getLinkmen().add(old_linkman);
 		
@@ -64,44 +49,43 @@ public class LinkmanServiceImp implements LinkmanService {
 
 	@Override
 	public void deleteLinkmanById(Long id) {
-		linkmanDao.deleteLinkman(id);
+		linkmanDao.remove(id);
 	}
 
 	@Override
 	public void add(Long cust_id, LinkMan linkman) {
 		
-		Customer customer = customerDao.findCustomerById(cust_id);
+		Customer customer = customerDao.findById(cust_id);
 		
 		customer.getLinkmen().add(linkman);
 		linkman.setCustomer(customer);
 		
-		linkmanDao.add(linkman);
-		
+		linkmanDao.save(linkman);
 		
 	}
 	
-	public LinkmanDao getLinkmanDao() {
-		return linkmanDao;
-	}
-
-	public void setLinkmanDao(LinkmanDao linkmanDao) {
-		this.linkmanDao = linkmanDao;
-	}
 
 	@Override
 	public PageBean<LinkMan> findAllLinkManByPageBean(DetachedCriteria dc, int currentPage, int pageSize) {
 
-		int totalCount = linkmanDao.findTotalCount(dc);
+		int totalCount = linkmanDao.findTatalCount(dc);
 		
 		PageBean<LinkMan> pageBean = new PageBean<LinkMan>(currentPage,pageSize,totalCount);
 		
-		List<LinkMan> list = linkmanDao.findAllLinkmanByPageBean(dc,pageBean.getCurrentPage(),pageBean.getPageSize());
+		List<LinkMan> list = linkmanDao.finAllByPageBean(dc,pageBean.getPageSize(),pageBean.getCurrentPage());
 		
 		pageBean.setList(list);
 		
 		return pageBean;
 	}
 
+	public LinkmanDao getLinkmanDao() {
+		return linkmanDao;
+	}
+	
+	public void setLinkmanDao(LinkmanDao linkmanDao) {
+		this.linkmanDao = linkmanDao;
+	}
 
 
 }

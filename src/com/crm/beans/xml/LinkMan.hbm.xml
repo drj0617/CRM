@@ -18,7 +18,6 @@
 		<property name="lkm_qq" ></property>
 		<property name="lkm_position" ></property>
 		<property name="lkm_memo"></property>
-		
 		<!-- 多对一关系配置 -->
 		
 		<many-to-one name="customer" column="lkm_cust_id" class="Customer"></many-to-one>

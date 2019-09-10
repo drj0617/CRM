@@ -14,7 +14,7 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import com.crm.beans.User;
 import com.crm.dao.UserDao;
 
-public class UserDaoImp extends HibernateDaoSupport implements UserDao{
+public class UserDaoImp extends BaseDaoImp<User> implements UserDao{
 
 
 	@Override

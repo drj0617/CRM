@@ -10,13 +10,9 @@ import com.crm.utils.PageBean;
 public interface LinkmanService {
 
 	LinkMan findlikman(Long id);
-	List<LinkMan> findAllLinkMan();
-	List<LinkMan> findAllLinkMan(DetachedCriteria dc);
 	void modifyLinkman(LinkMan linkman, Long old_lkm_id, Long cust_id);
 	void deleteLinkmanById(Long id);
 	void add(Long cust_id, LinkMan linkman);
 	PageBean<LinkMan> findAllLinkManByPageBean(DetachedCriteria dc, int currentPage, int pageSize);
-
-
 
 }

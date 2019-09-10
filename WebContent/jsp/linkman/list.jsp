@@ -84,24 +84,31 @@
 								<TR>
 									<TD>
 										<TABLE id=grid
-											style="BORDER-TOP-WIDTH: 0px; FONT-WEIGHT: normal; BORDER-LEFT-WIDTH: 0px; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 0px; BORDER-BOTTOM-COLOR: #cccccc; WIDTH: 100%; BORDER-TOP-COLOR: #cccccc; FONT-STYLE: normal; BACKGROUND-COLOR: #cccccc; BORDER-RIGHT-WIDTH: 0px; TEXT-DECORATION: none; BORDER-RIGHT-COLOR: #cccccc"
+											style="BORDER-TOP-WIDTH: 0px; FONT-WEIGHT: normal; 
+											BORDER-LEFT-WIDTH: 0px; BORDER-LEFT-COLOR: #cccccc; 
+											BORDER-BOTTOM-WIDTH: 0px; BORDER-BOTTOM-COLOR: #cccccc; 
+											WIDTH: 100%; BORDER-TOP-COLOR: #cccccc; FONT-STYLE: normal; 
+											BACKGROUND-COLOR: #cccccc; BORDER-RIGHT-WIDTH: 0px; 
+											TEXT-DECORATION: none; BORDER-RIGHT-COLOR: #cccccc"
 											cellSpacing=1 cellPadding=2 rules=all border=0>
 											<TBODY>
 												<TR
-													style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
+													style="FONT-WEIGHT: bold; FONT-STYLE: normal; 
+													BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
 													<TD>联系人名称</TD>
 													<TD>性别</TD>
-													<TD>客户</TD>
+<!-- 													<TD>客户</TD> -->
 													<TD>办公电话</TD>
 													<TD>手机</TD>
 													<TD>操作</TD>
 												</TR>
 												<c:forEach items="${pageBean.list }" var="linkman">
 													<TR
-														style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
+														style="FONT-WEIGHT: normal; FONT-STYLE: normal; 
+														BACKGROUND-COLOR: white; TEXT-DECORATION: none">
 														<TD>${linkman.lkm_name }</TD>
 														<TD>${linkman.lkm_gender }</TD>
-														<TD>${linkman.customer.cust_name }</TD>
+<%-- 														<TD>${linkman.customer.cust_name }</TD> --%>
 														<TD>${linkman.lkm_phone }</TD>
 														<TD>${linkman.lkm_mobile }</TD>
 
