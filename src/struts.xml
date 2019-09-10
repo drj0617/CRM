@@ -43,9 +43,9 @@
 		</global-results>
 		<action name="CustomerAction_*" class="customerAction" method="{1}">
 			<result name="toList" type="redirectAction">CustomerAction_list</result>
-			<result name="list" type="">/jsp/customer/list.jsp</result>
+			<result name="list" >/jsp/customer/list.jsp</result>
 			<result name="delete" type="redirectAction">CustomerAction_list</result>
-			<result name="modify" type="">/jsp/customer/edit.jsp</result>
+			<result name="modify" >/jsp/customer/edit.jsp</result>
 			<result name="update" type="redirectAction">CustomerAction_list</result>
 		</action>
 	</package>

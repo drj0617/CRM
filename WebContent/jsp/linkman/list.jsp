@@ -97,7 +97,7 @@
 													BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
 													<TD>联系人名称</TD>
 													<TD>性别</TD>
-<!-- 													<TD>客户</TD> -->
+													<TD>客户</TD>
 													<TD>办公电话</TD>
 													<TD>手机</TD>
 													<TD>操作</TD>
@@ -108,7 +108,7 @@
 														BACKGROUND-COLOR: white; TEXT-DECORATION: none">
 														<TD>${linkman.lkm_name }</TD>
 														<TD>${linkman.lkm_gender }</TD>
-<%-- 														<TD>${linkman.customer.cust_name }</TD> --%>
+														<TD>${linkman.customer.cust_name }</TD>
 														<TD>${linkman.lkm_phone }</TD>
 														<TD>${linkman.lkm_mobile }</TD>
 

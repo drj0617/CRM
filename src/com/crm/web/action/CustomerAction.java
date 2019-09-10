@@ -2,8 +2,10 @@ package com.crm.web.action;
 
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.context.ApplicationContext;
 
 import com.crm.beans.Customer;
 import com.crm.service.CustomerService;
@@ -56,6 +58,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	}
 	
 	public String modify() {
+//		System.out.println(customer.getCust_id());
+		Customer findCustomer = customerService.findCustomer(customer.getCust_id());
+//		System.out.println(findCustomer);
+		ActionContext.getContext().put("customer", findCustomer);
 		
 		return "modify";
 				

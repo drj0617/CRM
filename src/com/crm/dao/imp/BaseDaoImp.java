@@ -23,7 +23,7 @@ public class BaseDaoImp<T> extends HibernateDaoSupport implements BaseDao<T>{
 		// 获得实际调用中真正的泛型对应的类型
 		Type[] ts = types.getActualTypeArguments();
 		
-		clazz = ts[0].getClass();
+		clazz = (Class) ts[0];
 		
 	}
 

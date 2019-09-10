@@ -53,18 +53,18 @@
 							<TR>
 								<td>客户名称：</td>
 								<td><INPUT class=textbox id=sChannel2 style="WIDTH: 180px"
-									maxLength=50 name="cust_name" value="${param.cust_name }">
+									maxLength=50 name="cust_name" value="${customer.cust_name }">
 								</td>
 								<td>客户级别 ：</td>
 								<td><INPUT class=textbox id=sChannel2 style="WIDTH: 180px"
-									maxLength=50 name="cust_level" value="${param.cust_level }">
+									maxLength=50 name="cust_level" value="${customer.cust_level }">
 								</td>
 							</TR>
 
 							<TR>
 								<td>信息来源：</td>
 								<td><INPUT class=textbox id=sChannel2 style="WIDTH: 180px"
-									maxLength=50 name="cust_source" value="${param.cust_source }">
+									maxLength=50 name="cust_source" value="${customer.cust_source }">
 								</td>
 								<td>联系人：</td>
 							</TR>
