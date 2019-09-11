@@ -98,7 +98,7 @@
 													<TD>客户名称</TD>
 													<TD>客户级别</TD>
 													<TD>客户来源</TD>
-<!-- 													<TD>联系人</TD> -->
+													<TD>所属行业</TD>
 													<TD>电话</TD>
 													<TD>手机</TD>
 													<TD>操作</TD>
@@ -108,9 +108,9 @@
 														style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white;
 														 TEXT-DECORATION: none">
 														<TD>${customer.cust_name }</TD>
-														<TD>${customer.cust_level }</TD>
-														<TD>${customer.cust_source }</TD>
-<%-- 														<TD>${customer.linkmen.lkm_name }</TD> --%>
+														<TD>${customer.cust_level.dict_item_name }</TD>
+														<TD>${customer.cust_source.dict_item_name }</TD>
+														<TD>${customer.cust_industry.dict_item_name }</TD>
 														<TD>${customer.cust_phone }</TD>
 														<TD>${customer.cust_mobile }</TD>
 														<TD><a

@@ -25,7 +25,7 @@
 		</action>
 	</package>
 	
-	<package name="customer" namespace="/" extends="struts-default">
+	<package name="customer" namespace="/" extends="json-default">
 		<interceptors>
 			<interceptor name="permission" class="com.crm.web.MyInterceptor">
 				<param name="excludeMethods">login</param>
@@ -50,7 +50,7 @@
 		</action>
 	</package>
 	
-	<package name="linkman" namespace="/" extends="struts-default">
+	<package name="linkman" namespace="/" extends="json-default">
 		<interceptors>
 			<interceptor name="permission" class="com.crm.web.MyInterceptor">
 				<param name="excludeMethods">login</param>

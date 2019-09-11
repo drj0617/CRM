@@ -80,5 +80,13 @@ public class BaseDict {
 		this.dict_memo = dict_memo;
 	}
 
+	@Override
+	public String toString() {
+		return "BaseDict [dict_id=" + dict_id + ", dict_type_code=" + dict_type_code + ", dict_type_name="
+				+ dict_type_name + ", dict_item_name=" + dict_item_name + ", dict_item_code=" + dict_item_code
+				+ ", dict_sort=" + dict_sort + ", dict_enable=" + dict_enable + ", dict_memo=" + dict_memo + "]";
+	}
 
+
+	
 }
