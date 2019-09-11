@@ -75,6 +75,13 @@
 		</action>
 	</package>
 	
+	<package name="basedict" namespace="/" extends="json-default">
+		<action name="BasedictAction_*" class="basedictAction" method="{1}">
+			<result name="success" type="json">
+				<param name="root">list</param>
+			</result>
+		</action>
+	</package>
 
 
 </struts>

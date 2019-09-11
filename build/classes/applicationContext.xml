@@ -45,7 +45,9 @@
 	</bean>
 	<bean name="linkmanAction" class="com.crm.web.action.LinkmanAction" scope="prototype">
 		<property name="linkmanService" ref="linkmanService"></property>
-<!-- 		<property name="cust_id" value="cust_id"></property> -->
+	</bean>
+	<bean name="basedictAction" class="com.crm.web.action.BasedictAction" scope="prototype">
+		<property name="basedictService" ref="basedictService"></property>
 	</bean>
 
 	<!-- 管理 Service -->
@@ -58,6 +60,9 @@
 	<bean name="linkmanService" class="com.crm.service.imp.LinkmanServiceImp">
 		<property name="linkmanDao" ref="linkmanDao"></property>
 	</bean>
+	<bean name="basedictService" class="com.crm.service.imp.BasedictServiceImp">
+		<property name="basedictDao" ref="basedictDao"></property>
+	</bean>
 	
 	<!-- 管理 Dao -->
 	<bean name="userDao" class="com.crm.dao.imp.UserDaoImp">
@@ -67,6 +72,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean name="linkmanDao" class="com.crm.dao.imp.LinkmanDaoImp">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="basedictDao" class="com.crm.dao.imp.BasedictDaoImp">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	

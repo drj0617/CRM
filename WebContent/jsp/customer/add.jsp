@@ -10,7 +10,38 @@
 	type=text/css rel=stylesheet>
 <LINK href="${pageContext.request.contextPath }/css/Manage.css"
 	type=text/css rel=stylesheet>
-
+	
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		optionSelect("001","custIndustrySelect");
+		optionSelect("002","custSourceSelect");
+		optionSelect("006","custLevelSelect");
+	});
+	
+	function optionSelect(type_code,selectId){
+		$.ajax({
+			url:"${pageContext.request.contextPath }/BasedictAction_list",
+			data:{
+				"dict_type_code": type_code
+			},
+			success:function(data){
+				var $select = $("#"+selectId);
+				$select.append("<option>请选择</option>");
+				for(var i=0;i<data.length;i++){
+// 					<option value='data[i].dict_id'>data[i].dict_type_name</option>
+					$select.append("<option value='"+data[i].dict_id+"'>"+data[i].dict_item_name+"</option>");
+				}
+				
+			},
+			dataType:"json",
+			async:true
+		});
+	}
+	
+	
+	
+</script>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
@@ -59,15 +90,29 @@
 								<td><INPUT class=textbox id=sChannel2 style="WIDTH: 180px"
 									maxLength=50 name="cust_name"></td>
 								<td>客户级别 ：</td>
-								<td><INPUT class=textbox id=sChannel2 style="WIDTH: 180px"
-									maxLength=50 name="cust_level"></td>
+								<td>
+									<select id="custLevelSelect" class="textbox" style="WIDTH: 184px; height: 22px"
+									name="cust_level">
+									</select>
+								</td>	
 							</TR>
 
 							<TR>
 
 								<td>信息来源 ：</td>
-								<td><INPUT class=textbox id=sChannel2 style="WIDTH: 180px"
-									maxLength=50 name="cust_source"></td>
+								<td>
+									<select id="custSourceSelect" class="textbox" style="WIDTH: 184px; height: 22px"
+									name="cust_source">
+									</select>
+								</td>	
+							
+
+								<td>所属行业 ：</td>
+								<td>
+									<select id="custIndustrySelect" class="textbox" style="WIDTH: 184px; height: 22px"
+									name="cust_industry">
+									</select>
+								</td>	
 							</TR>
 
 							<TR>
