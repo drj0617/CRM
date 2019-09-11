@@ -12,34 +12,13 @@
 	type=text/css rel=stylesheet>
 	
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/myJs.js"></script>
 <script type="text/javascript">
 	$(function(){
 		optionSelect("001","custIndustrySelect");
 		optionSelect("002","custSourceSelect");
 		optionSelect("006","custLevelSelect");
 	});
-	
-	function optionSelect(type_code,selectId){
-		$.ajax({
-			url:"${pageContext.request.contextPath }/BasedictAction_list",
-			data:{
-				"dict_type_code": type_code
-			},
-			success:function(data){
-				var $select = $("#"+selectId);
-				$select.append("<option>请选择</option>");
-				for(var i=0;i<data.length;i++){
-// 					<option value='data[i].dict_id'>data[i].dict_type_name</option>
-					$select.append("<option value='"+data[i].dict_id+"'>"+data[i].dict_item_name+"</option>");
-				}
-				
-			},
-			dataType:"json",
-			async:true
-		});
-	}
-	
-	
 	
 </script>
 
@@ -91,8 +70,9 @@
 									maxLength=50 name="cust_name"></td>
 								<td>客户级别 ：</td>
 								<td>
-									<select id="custLevelSelect" class="textbox" style="WIDTH: 184px; height: 22px"
-									name="cust_level">
+									<select id="custLevelSelect" class="textbox" 
+									style="WIDTH: 184px; height: 22px"
+									name="cust_level.dict_id">
 									</select>
 								</td>	
 							</TR>
@@ -101,16 +81,18 @@
 
 								<td>信息来源 ：</td>
 								<td>
-									<select id="custSourceSelect" class="textbox" style="WIDTH: 184px; height: 22px"
-									name="cust_source">
+									<select id="custSourceSelect" class="textbox" 
+									style="WIDTH: 184px; height: 22px"
+									name="cust_source.dict_id">
 									</select>
 								</td>	
 							
 
 								<td>所属行业 ：</td>
 								<td>
-									<select id="custIndustrySelect" class="textbox" style="WIDTH: 184px; height: 22px"
-									name="cust_industry">
+									<select id="custIndustrySelect" class="textbox" 
+									style="WIDTH: 184px; height: 22px"
+									name="cust_industry.dict_id">
 									</select>
 								</td>	
 							</TR>

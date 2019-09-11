@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,32 +13,13 @@
 	type=text/css rel=stylesheet>
 
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/myJs.js"></script>
 <script type="text/javascript">
 	$(function(){
-		optionSelect("001","custIndustrySelect");
-		optionSelect("002","custSourceSelect");
-		optionSelect("006","custLevelSelect");
+		optionSelect("001","custIndustrySelect", "<s:property value="#customer.cust_industry.dict_id"/>");
+		optionSelect("002","custSourceSelect",  "<s:property value="#customer.cust_source.dict_id"/>");
+		optionSelect("006","custLevelSelect", "<s:property value="#customer.cust_level.dict_id"/>");
 	});
-	
-	function optionSelect(type_code,selectId){
-		$.ajax({
-			url:"${pageContext.request.contextPath }/BasedictAction_list",
-			data:{
-				"dict_type_code": type_code
-			},
-			success:function(data){
-				var $select = $("#"+selectId);
-				$select.append("<option>请选择</option>");
-				for(var i=0;i<data.length;i++){
-// 					<option value='data[i].dict_id'>data[i].dict_type_name</option>
-					$select.append("<option value='"+data[i].dict_id+"'>"+data[i].dict_item_name+"</option>");
-				}
-				
-			},
-			dataType:"json",
-			async:true
-		});
-	}
 	
 </script>
 
@@ -49,7 +31,6 @@
 		action="${pageContext.request.contextPath }/CustomerAction_update"
 		method=post>
 		<input type="hidden" name="cust_id" value="${customer.cust_id }" />
-
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
@@ -83,12 +64,13 @@
 							<TR>
 								<td>客户名称：</td>
 								<td><INPUT class=textbox id=sChannel2 style="WIDTH: 180px"
-									maxLength=50 name="cust_name" value="${customer.cust_name }">
+									maxLength=50 name="cust_name" value='<s:property value="#customer.cust_name"/>'>
 								</td>
 								<td>客户级别 ：</td>
 								<td>
-									<select id="custLevelSelect" class="textbox" style="WIDTH: 184px; height: 22px"
-									name="cust_level"  value="${customer.cust_level.dict_item_name }">
+									<select id="custLevelSelect" class="textbox" 
+									style="WIDTH: 184px; height: 22px"
+									name="cust_level.dict_id"  >
 									</select>
 								</td>	
 							</TR>
@@ -96,16 +78,18 @@
 							<TR>
 								<td>信息来源 ：</td>
 								<td>
-									<select id="custSourceSelect" class="textbox" style="WIDTH: 184px; height: 22px"
-									name="cust_source"  value="${customer.cust_source.dict_item_name }">
+									<select id="custSourceSelect" class="textbox" 
+									style="WIDTH: 184px; height: 22px"
+									name="cust_source.dict_id"  >
 									</select>
 								</td>	
 							
 
 								<td>所属行业 ：</td>
 								<td>
-									<select id="custIndustrySelect" class="textbox" style="WIDTH: 184px; height: 22px"
-									name="cust_industry"  value="${customer.cust_industry.dict_item_name }">
+									<select id="custIndustrySelect" class="textbox" 
+									style="WIDTH: 184px; height: 22px"
+									name="cust_industry.dict_id" >
 									</select>
 								</td>	
 							</TR>
@@ -114,11 +98,11 @@
 
 								<td>固定电话 ：</td>
 								<td><INPUT class=textbox id=sChannel2 style="WIDTH: 180px"
-									maxLength=50 name="cust_phone" value="${customer.cust_phone }">
+									maxLength=50 name="cust_phone"  value='<s:property value="#customer.cust_phone"/>'>
 								</td>
 								<td>移动电话 ：</td>
 								<td><INPUT class=textbox id=sChannel2 style="WIDTH: 180px"
-									maxLength=50 name="cust_mobile" value="${customer.cust_mobile }">
+									maxLength=50 name="cust_mobile"  value='<s:property value="#customer.cust_mobile"/>'>
 								</td>
 							</TR>
 

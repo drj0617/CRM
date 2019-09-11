@@ -45,7 +45,7 @@
 			<result name="toList" type="redirectAction">CustomerAction_list</result>
 			<result name="list" >/jsp/customer/list.jsp</result>
 			<result name="delete" type="redirectAction">CustomerAction_list</result>
-			<result name="modify" >/jsp/customer/edit.jsp</result>
+			<result name="modify" type="dispatcher">/jsp/customer/edit.jsp</result>
 			<result name="update" type="redirectAction">CustomerAction_list</result>
 		</action>
 	</package>

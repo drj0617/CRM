@@ -30,7 +30,7 @@ public class BaseDaoImp<T> extends HibernateDaoSupport implements BaseDao<T>{
 	@Override
 	public void save(T t) {
 		
-		getHibernateTemplate().save(t);
+		getHibernateTemplate().saveOrUpdate(t);
 		
 	}
 
@@ -45,7 +45,7 @@ public class BaseDaoImp<T> extends HibernateDaoSupport implements BaseDao<T>{
 	@Override
 	public void modify(T t) {
 		
-		getHibernateTemplate().update(t);
+		getHibernateTemplate().saveOrUpdate(t);
 		
 	}
 
